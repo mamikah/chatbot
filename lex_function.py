@@ -1,1 +1,2 @@
 print('aiueo')
+print('kakikukeko')
