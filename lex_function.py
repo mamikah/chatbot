@@ -167,4 +167,4 @@ def lambda_handler(event, context):
         #     fulfillment_state = "Fulfilled"    
         #     session_attributes = get_session_attributes(event)
         #     return close(event, session_attributes, fulfillment_state, message)
-    
+        #     test
