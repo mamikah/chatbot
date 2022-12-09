@@ -136,4 +136,18 @@ def lambda_handler(event, context):
         #     return close(event, session_attributes, fulfillment_state, message)
         #     test
         #     a
-    
+    elif str(intent_name) == "Delete": # 削除インテントの場合
+        pass
+        # if none_list != []: # 空きスロットがある場合
+        #     session_attributes = get_session_attributes(event)
+        #     text = "どの商品を削除しますか？"
+        #     message =  {
+        #         'contentType': 'PlainText',
+        #         'content': text
+        #     }
+        #     return elicit_slot(event, session_attributes, none_list[0], message)
+        # else: # スロットが全て埋まっている場合
+        #     # データベースを参照して該当した商品を削除するコードが必要
+        #     fulfillment_state = "Fulfilled"    
+        #     session_attributes = get_session_attributes(event)
+        #     return close(event, session_attributes, fulfillment_state, message)
