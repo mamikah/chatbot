@@ -67,7 +67,6 @@ def close(intent_request, session_attributes, fulfillment_state, message):
     }
 
 def lambda_handler(event, context):
-    global JankenCount
     print(event)
     intent_name = event['sessionState']['intent']['name'] # インテント名取得
     slots = get_slots(event)
@@ -81,6 +80,7 @@ def lambda_handler(event, context):
                 'contentType': 'PlainText',
                 'content': text
             }
+            return elicit_slot(event, session_attributes, none_list[0], message)
         elif len(none_list) == 1:
             session_attributes = get_session_attributes(event)
             text = "賞味・消費期限の日付を追加してください"
@@ -94,39 +94,6 @@ def lambda_handler(event, context):
                 shohin = str(get_slot(event, "addition")) # ユーザ入力を取得
                 timelimit = str(get_slot(event, "timelimit"))
 
-                # if user_hand == 0:
-                #     if landom == 0:
-                #         lex_hand = "ぐー"
-                #         result = "あいこ"
-                #     elif landom == 1:
-                #         lex_hand = "ちょき"
-                #         result = "勝ち"
-                #     else:
-                #         lex_hand = "ぱー"
-                #         result = "負け"
-                # elif user_hand == 1:
-                #     if landom == 0:
-                #         lex_hand = "ぐー"
-                #         result = "負け"
-                #     elif landom == 1:
-                #         lex_hand = "ちょき"
-                #         result = "あいこ"
-                #     else:
-                #         lex_hand = "ぱー"
-                #         result = "勝ち"
-                # elif user_hand == 2:
-                #     if landom == 0:
-                #         lex_hand = "ぐー"
-                #         result = "勝ち"
-                #     elif landom == 1:
-                #         lex_hand = "ちょき"
-                #         result = "負け"
-                #     else:
-                #         lex_hand = "ぱー"
-                #         result = "あいこ"
-                
-                # else:
-                #     raise Exception
             except:
                 text = "適切な名前を入れてください"
             else:
@@ -142,29 +109,5 @@ def lambda_handler(event, context):
             
     elif str(intent_name) == "Uranai": # 占いインテントの場合
         pass
-        # if none_list != []: # 空きスロットがある場合
-        #     session_attributes = get_session_attributes(event)
-        #     text = "好きな数字を教えてください！"
-        #     message =  {
-        #         'contentType': 'PlainText',
-        #         'content': text
-        #     }
-        #     return elicit_slot(event, session_attributes, none_list[0], message)
-        # else: # スロットが全て埋まっている場合
-        #     number = int(get_slot(event, "number")) # ユーザ入力を取得
-        #     landm = random.randint(0,2)
-        #     if landm == 0:
-        #         text = str(number)+ "ですね！今日の運勢は最高です！"
-        #     elif landm == 1:
-        #         text = str(number)+ "ですね！今日の運勢はまあまあです！"
-        #     else:
-        #         text = str(number)+ "ですね！今日の運勢は最悪でどん底です！"
-            
-        #     message =  {
-        #             'contentType': 'PlainText',
-        #             'content': text
-        #         }
-        #     fulfillment_state = "Fulfilled"    
-        #     session_attributes = get_session_attributes(event)
-        #     return close(event, session_attributes, fulfillment_state, message)
+        
     
