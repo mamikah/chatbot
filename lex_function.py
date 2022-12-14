@@ -1,3 +1,39 @@
+# import osSS
+# import sys
+                               
+# import pymysql
+# from aws_lambda_powertools import Logger
+# from aws_lambda_powertools.utilities.typing import LambdaContext
+ 
+# DB_HOST = os.environ["DB_ENDPOINT"]
+# DB_USER = os.environ["DB_USER"]
+# DB_PASSWORD = os.environ["DB_PASSWORD"]
+# DB_NAME = os.environ["DB_NAME"]
+ 
+# logger = Logger(level='INFO', service=__name__)
+ 
+
+# @logger.inject_lambda_context()
+# def handler(event=None, context=LambdaContext):
+#     try:
+#         # RDS Proxyに接続
+#         connect = pymysql.connect(host=DB_HOST, user=DB_USER, passwd=DB_PASSWORD, db=DB_NAME, connect_timeout=5)
+#         with connect.cursor() as cursor:
+#             cursor.execute("select * from sample")
+#             result = cursor.fetchall()
+#             # selectのみなので、commit()は不要
+#             # conn.commit()
+#             logger.info(result)
+#         connect.close()
+#     except pymysql.MySQLError as e:
+#         logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
+#         logger.error(e)
+#         sys.exit()
+#     except Exception:
+#         logger.error("ERROR: Unexpected error: Could not get value")
+#         sys.exit()
+ 
+#     return result
 def get_slots(intent_request):
     return intent_request['sessionState']['intent']['slots']
 
